@@ -1,8 +1,6 @@
 package edu.neu.coe.info6205.threesum;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * Implementation of ThreeSum which follows the approach of dividing the solution-space into
@@ -38,6 +36,24 @@ public class ThreeSumQuadratic implements ThreeSum {
     public List<Triple> getTriples(int j) {
         List<Triple> triples = new ArrayList<>();
         // FIXME : for each candidate, test if a[i] + a[j] + a[k] = 0.
+        for (int n = j + 1,i=j-1; n < a.length && i>=0;) {
+
+            int c = a[j]+a[i] + a[n];
+            if(c==0){
+                triples.add(new Triple(a[i],a[j],a[n]));
+                if(n==a.length-1){
+                    i--;
+                }
+                n++;
+            }
+            else if(c>0){
+                i--;
+            }
+            else if(c<0){
+                n++;
+            }
+        }
+
         // END 
         return triples;
     }
